@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model post {
+  id      Int    @id @default(autoincrement())
+  title   String @db.VarChar(50)
+  body    String @db.VarChar(500)
+  user_id Int
+  user    user   @relation(fields: [user_id], references: [id], onDelete: NoAction, map: "fk_user_posts")
+
+  @@index([user_id], map: "user_id_idx")
+}
+
+model user {
+  id              Int       @id @default(autoincrement())
+  name            String    @unique(map: "name_UNIQUE") @db.VarChar(50)
+  email           String    @unique(map: "email_UNIQUE") @db.VarChar(50)
+  password        String    @db.VarChar(200)
+  verified        Int       @default(0) @db.TinyInt
+  validation_time DateTime? @db.Timestamp(6)
+  post            post[]
+}
