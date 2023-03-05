@@ -10,7 +10,7 @@ datasource db {
 model post {
   id      Int    @id @default(autoincrement())
   title   String @db.VarChar(50)
-  body    String @db.VarChar(500)
+  body    String @db.Text
   user_id Int
   user    user   @relation(fields: [user_id], references: [id], onDelete: NoAction, map: "fk_user_posts")
 

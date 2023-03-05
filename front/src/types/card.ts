@@ -1,5 +1,8 @@
 export default interface cardData {
-  user: string;
+  id: number;
   title: string;
   body: string;
+  user: {
+    name: string;
+  };
 }
