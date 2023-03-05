@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const Sidebar = () => {
   return (
-    <aside className="col-start-1 h-[calc(100vh-72.59px)] w-full bg-white px-5 overflow-y-scroll top-[72.59px] sticky text-sm">
+    <aside className="col-start-1 h-[calc(100vh-4.5rem)] w-full bg-white px-5 overflow-y-scroll top-[4.5rem] sticky text-sm">
       <section className="mb-3">
         <h3 className="subjectTitle">feeds</h3>
         <ul className="flex flex-col gap-y-3">

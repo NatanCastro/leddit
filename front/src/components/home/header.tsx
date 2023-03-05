@@ -13,7 +13,7 @@ export const Header = ({ user }: { user: user | null }) => {
 
   return (
     <>
-      <header className="top-0 sticky col-span-full flex items-center justify-between px-5 py-4 bg-white">
+      <header className="h-[4.5rem] top-0 sticky col-span-full flex items-center justify-between px-5 bg-white">
         <Image src="next.svg" alt="" width={200} height={20} />
         <nav>
           {user === null ? (
@@ -32,7 +32,7 @@ export const Header = ({ user }: { user: user | null }) => {
           ) : (
             <div className="flex w-fit gap-x-4 items-center justify-center text-sm">
               <button className="headerLink" onClick={handleLogout}>
-                logout
+                logout {user.name}
               </button>
               <Image
                 src="user.svg"

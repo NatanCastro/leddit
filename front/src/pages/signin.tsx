@@ -10,18 +10,18 @@ export default function Signin() {
   const router = useRouter();
 
   async function handleSubmit(data: SignInReq) {
-    let res: AxiosResponse<Response> = await axios.post(
-      "http://localhost:6969/register",
-      data
-    );
-    const resData = res.data;
+    try {
+      let res: AxiosResponse<Response> = await axios.post(
+        "http://localhost:6969/register",
+        data
+      );
+      const resData = res.data;
 
-    if (resData.userExists) {
-      alert("usuario e/ou email em uso");
-      return;
+      sessionStorage.setItem("id", `${resData.id}`);
+      router.push("/");
+    } catch (e: any) {
+      alert(e.response.data);
     }
-    sessionStorage.setItem("id", `${resData.id}`);
-    router.push("/");
   }
 
   return (

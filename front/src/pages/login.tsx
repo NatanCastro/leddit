@@ -2,7 +2,7 @@ import Input from "@/components/input";
 import Image from "next/image";
 import Link from "next/link";
 import { Form } from "@unform/web";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { LoginReq, Response } from "@/types/form";
 
@@ -10,18 +10,18 @@ export default function Login() {
   const router = useRouter();
 
   async function handleSubmit(data: LoginReq) {
-    let res: AxiosResponse<Response> = await axios.post(
-      "http://localhost:6969/login",
-      data
-    );
-    const resData = res.data;
+    try {
+      let res: AxiosResponse<Response> = await axios.post(
+        "http://localhost:6969/login",
+        data
+      );
+      const resData = res.data;
 
-    if (!resData.userExists) {
-      alert("usuario não existente");
-      return;
+      sessionStorage.setItem("id", `${resData.id}`);
+      router.push("/");
+    } catch (e: any) {
+      alert(e.response.data);
     }
-    sessionStorage.setItem("id", `${resData.id}`);
-    router.push("/");
   }
 
   return (

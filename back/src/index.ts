@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import { PrismaClient, user } from "@prisma/client";
 import cors from "cors";
+import * as bcrypt from "bcrypt";
 const prisma = new PrismaClient();
 const app = express();
 const port = 6969;
@@ -31,9 +32,7 @@ app.post("/register", async (req, res) => {
     },
   });
   if (user.length > 0) {
-    res.status(409).send({
-      userExists: true,
-    });
+    res.status(409).send("Usuario e/ou email em uso");
     return;
   }
 
@@ -41,7 +40,7 @@ app.post("/register", async (req, res) => {
     data: {
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,
+      password: await bcrypt.hash(req.body.password, 10),
     },
   });
 
@@ -62,7 +61,6 @@ app.post("/login", async (req, res) => {
   const user = await prisma.user.findFirst({
     where: {
       email: body.email,
-      password: body.password,
     },
   });
 
@@ -73,6 +71,11 @@ app.post("/login", async (req, res) => {
     return;
   }
 
+  if (!(await bcrypt.compare(body.password, user.password))) {
+    res.status(400).send("senha errada");
+    return;
+  }
+
   res.status(201).send({
     userExists: true,
     id: user?.id,
@@ -80,13 +83,17 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/user/:id", async (req, res) => {
-  if (Number(req.params.id).toString() === "NaN") {
-    res.status(400).send();
+  const id = Number(req.params.id);
+
+  if (id.toString() === "NaN") {
+    res.status(400).send({
+      user: null,
+    });
     return;
   }
   const user: user | null = await prisma.user.findUnique({
     where: {
-      id: Number(req.params.id),
+      id: id,
     },
   });
 
