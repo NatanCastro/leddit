@@ -3,16 +3,16 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model post {
   id      Int    @id @default(autoincrement())
   title   String @db.VarChar(50)
-  body    String @db.Text
+  body    String
   user_id Int
-  user    user   @relation(fields: [user_id], references: [id], onDelete: NoAction, map: "fk_user_posts")
+  user    user   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: Cascade, map: "fk_user_posts")
 
   @@index([user_id], map: "user_id_idx")
 }
@@ -21,8 +21,20 @@ model user {
   id              Int       @id @default(autoincrement())
   name            String    @unique(map: "name_UNIQUE") @db.VarChar(50)
   email           String    @unique(map: "email_UNIQUE") @db.VarChar(50)
-  password        String    @db.Text
-  verified        Int       @default(0) @db.TinyInt
+  password        String
+  verified        Int       @default(0) @db.SmallInt
   validation_time DateTime? @db.Timestamp(6)
+  created_at      DateTime  @default(now()) @db.Timestamp(6)
   post            post[]
+  followers       follows[] @relation("following")
+  following       follows[] @relation("follower")
+}
+
+model follows {
+  follower    user @relation(fields: [followerId], references: [id], name: "follower")
+  followerId  Int // relation scalar field (used in the `@relation` attribute above)
+  following   user @relation(fields: [followingId], references: [id], name: "following")
+  followingId Int // relation scalar field (used in the `@relation` attribute above)
+
+  @@id([followerId, followingId])
 }
