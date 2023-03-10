@@ -20,9 +20,9 @@
 }
 
 .input-field {
-  @apply flex gap-x-4 items-center justify-between;
+  @apply flex gap-x-4 items-center justify-between max-md:flex-col max-md:items-start;
 }
 
 .input {
-  @apply border-solid border-b-black border;
+  @apply border-solid border-b-black border max-md:p-2;
 }

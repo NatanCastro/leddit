@@ -30,7 +30,7 @@ export default function Login() {
         <nav className="w-full flex">
           <Link href="/" className="w-auto">
             <Image
-              src="arrow.svg"
+              src="static/arrow.svg"
               alt="voltar para pagina inicial"
               width={24}
               height={24}
@@ -38,7 +38,7 @@ export default function Login() {
             />
           </Link>
         </nav>
-        <Image src="user.svg" alt="user icon" width={64} height={64} />
+        <Image src="static/user.svg" alt="user icon" width={64} height={64} />
         <h1 className="text-2xl text-cente">Login</h1>
         <Form onSubmit={handleSubmit} className="flex flex-col mt-5 gap-y-4">
           <div className="input-field">

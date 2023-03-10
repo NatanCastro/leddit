@@ -1,14 +1,20 @@
 import { useField } from "@unform/core";
 import { useEffect, useRef } from "react";
 
+type inputType = {
+  type: string;
+  name: string;
+  cass?: string;
+  ph?: string;
+};
+
 export default function Input({
   type,
   name,
+  cass = "",
+  ph,
   ...rest
-}: {
-  type: string;
-  name: string;
-}) {
+}: inputType) {
   const inputRef = useRef(null);
   const { fieldName, defaultValue, registerField, error } = useField(name);
 
@@ -35,7 +41,8 @@ export default function Input({
       name={name}
       id={name}
       defaultValue={defaultValue}
-      className="input"
+      className={cass || "input"}
+      placeholder={ph}
       required
       {...rest}
     />

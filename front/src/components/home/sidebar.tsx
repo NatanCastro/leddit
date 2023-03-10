@@ -10,7 +10,7 @@ export const Sidebar = () => {
           <li>
             <Link href="" className="flex items-center justify-start">
               <Image
-                src="home.svg"
+                src="static/home.svg"
                 alt=""
                 width={24}
                 height={24}
@@ -22,7 +22,7 @@ export const Sidebar = () => {
           <li>
             <Link href="" className="flex items-center justify-start">
               <Image
-                src="trending.svg"
+                src="static/trending.svg"
                 alt=""
                 width={24}
                 height={24}
@@ -40,7 +40,7 @@ export const Sidebar = () => {
             <Link href="" className="flex items-center justify-between">
               <span>
                 <Image
-                  src="gaming.svg"
+                  src="static/gaming.svg"
                   alt="gaming"
                   width={24}
                   height={24}
@@ -49,7 +49,7 @@ export const Sidebar = () => {
                 gaming
               </span>
               <Image
-                src="arrow.svg"
+                src="static/arrow.svg"
                 alt=""
                 width={24}
                 height={24}
@@ -61,7 +61,7 @@ export const Sidebar = () => {
             <Link href="" className="flex items-center justify-between">
               <span>
                 <Image
-                  src="sports.svg"
+                  src="static/sports.svg"
                   alt="sports"
                   width={24}
                   height={24}
@@ -70,7 +70,7 @@ export const Sidebar = () => {
                 sports
               </span>
               <Image
-                src="arrow.svg"
+                src="static/arrow.svg"
                 alt=""
                 width={24}
                 height={24}
@@ -82,7 +82,7 @@ export const Sidebar = () => {
             <Link href="" className="flex items-center justify-between">
               <span>
                 <Image
-                  src="business.svg"
+                  src="static/business.svg"
                   alt="business"
                   width={24}
                   height={24}
@@ -91,7 +91,7 @@ export const Sidebar = () => {
                 business
               </span>
               <Image
-                src="arrow.svg"
+                src="static/arrow.svg"
                 alt=""
                 width={24}
                 height={24}
@@ -103,7 +103,7 @@ export const Sidebar = () => {
             <Link href="" className="flex items-center justify-between">
               <span>
                 <Image
-                  src="crypto.svg"
+                  src="static/crypto.svg"
                   alt="crypto"
                   width={24}
                   height={24}
@@ -112,7 +112,7 @@ export const Sidebar = () => {
                 crypto
               </span>
               <Image
-                src="arrow.svg"
+                src="static/arrow.svg"
                 alt=""
                 width={24}
                 height={24}
@@ -124,7 +124,7 @@ export const Sidebar = () => {
             <Link href="" className="flex items-center justify-between">
               <span>
                 <Image
-                  src="television.svg"
+                  src="static/television.svg"
                   alt="television"
                   width={24}
                   height={24}
@@ -133,7 +133,7 @@ export const Sidebar = () => {
                 television
               </span>
               <Image
-                src="arrow.svg"
+                src="static/arrow.svg"
                 alt=""
                 width={24}
                 height={24}
@@ -145,7 +145,7 @@ export const Sidebar = () => {
             <Link href="" className="flex items-center justify-between">
               <span>
                 <Image
-                  src="more.svg"
+                  src="static/more.svg"
                   alt="more categories"
                   width={24}
                   height={24}
@@ -154,7 +154,7 @@ export const Sidebar = () => {
                 more categories
               </span>
               <Image
-                src="arrow.svg"
+                src="static/arrow.svg"
                 alt=""
                 width={24}
                 height={24}

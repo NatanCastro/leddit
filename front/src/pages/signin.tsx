@@ -5,9 +5,11 @@ import Input from "@/components/input";
 import { SignInReq, Response } from "@/types/form";
 import axios, { AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Signin() {
   const router = useRouter();
+  const [error, setError] = useState("");
 
   async function handleSubmit(data: SignInReq) {
     try {
@@ -20,7 +22,7 @@ export default function Signin() {
       sessionStorage.setItem("id", `${resData.id}`);
       router.push("/");
     } catch (e: any) {
-      alert(e.response.data);
+      setError(e.response.data);
     }
   }
 
@@ -30,7 +32,7 @@ export default function Signin() {
         <nav className="w-full flex">
           <Link href="/" className="w-auto">
             <Image
-              src="arrow.svg"
+              src="static/arrow.svg"
               alt="voltar para pagina inicial"
               width={24}
               height={24}
@@ -38,7 +40,7 @@ export default function Signin() {
             />
           </Link>
         </nav>
-        <Image src="user.svg" alt="user icon" width={64} height={64} />
+        <Image src="static/user.svg" alt="user icon" width={64} height={64} />
         <h1 className="text-2xl text-cente">Signin</h1>
         <Form
           onSubmit={handleSubmit}
@@ -47,15 +49,15 @@ export default function Signin() {
         >
           <div className="input-field">
             <label htmlFor="name">name:</label>
-            <Input type="text" name="name" />
+            <Input type="text" name="name" ph="name" />
           </div>
           <div className="input-field">
             <label htmlFor="email">email:</label>
-            <Input type="email" name="email" />
+            <Input type="email" name="email" ph="email" />
           </div>
           <div className="input-field">
             <label htmlFor="password">pasword:</label>
-            <Input type="password" name="password" />
+            <Input type="password" name="password" ph="password" />
           </div>
           <button
             type="submit"
@@ -63,6 +65,11 @@ export default function Signin() {
           >
             signin
           </button>
+          {error && (
+            <div className="bg-red-200 border border-red-600 text-center text-red-600 px-2 py-3 rounded mx-auto">
+              {error}
+            </div>
+          )}
         </Form>
       </div>
     </div>
