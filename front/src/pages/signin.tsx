@@ -6,6 +6,7 @@ import { SignInReq, Response } from "@/types/form";
 import axios, { AxiosResponse } from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Error } from "@/components/error";
 
 export default function Signin() {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function Signin() {
     <div className="grid place-items-center h-screen bg-gray-400 text-xl">
       <div className="flex flex-col p-5 items-center gap-y-2 bg-white rounded-lg">
         <nav className="w-full flex">
-          <Link href="/" className="w-auto">
+          <Link href="/" className="">
             <Image
               src="static/arrow.svg"
               alt="voltar para pagina inicial"
@@ -49,15 +50,15 @@ export default function Signin() {
         >
           <div className="input-field">
             <label htmlFor="name">name:</label>
-            <Input type="text" name="name" ph="name" />
+            <Input type="text" name="name" placeholder="name" />
           </div>
           <div className="input-field">
             <label htmlFor="email">email:</label>
-            <Input type="email" name="email" ph="email" />
+            <Input type="email" name="email" placeholder="email" />
           </div>
           <div className="input-field">
             <label htmlFor="password">pasword:</label>
-            <Input type="password" name="password" ph="password" />
+            <Input type="password" name="password" placeholder="password" />
           </div>
           <button
             type="submit"
@@ -65,11 +66,7 @@ export default function Signin() {
           >
             signin
           </button>
-          {error && (
-            <div className="bg-red-200 border border-red-600 text-center text-red-600 px-2 py-3 rounded mx-auto">
-              {error}
-            </div>
-          )}
+          {error && <Error clr={setError}>{error}</Error>}
         </Form>
       </div>
     </div>
