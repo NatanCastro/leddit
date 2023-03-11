@@ -24,6 +24,20 @@ app.get("/posts", async (_, res) => {
   res.json(posts);
 });
 
+app.post("/posts/create", async (req, res) => {
+  const body = req.body;
+  await prisma.$connect();
+  await prisma.post.create({
+    data: {
+      title: body.title,
+      body: body.body,
+      user_id: req.body.user_id,
+    },
+  });
+  await prisma.$disconnect();
+  res.status(201).send("post created");
+});
+
 app.post("/register", async (req, res) => {
   const body: user = req.body;
   const user = await prisma.user.findMany({
@@ -65,9 +79,7 @@ app.post("/login", async (req, res) => {
   });
 
   if (user === null) {
-    res.send({
-      userExists: false,
-    });
+    res.status(400).send("Usuario não existente");
     return;
   }
 
