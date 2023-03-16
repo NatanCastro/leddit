@@ -1,6 +1,7 @@
 import { Header } from "@/components/home/header";
 import { Sidebar } from "@/components/home/sidebar";
 import Input from "@/components/input";
+import { Loading } from "@/components/loading";
 import Textarea from "@/components/textarea";
 import useUser from "@/hooks/getUser";
 import { Form } from "@unform/web";
@@ -15,7 +16,6 @@ export default function Create() {
   const { isLoading, error, data } = useUser();
 
   const router = useRouter();
-
   useEffect(() => {
     const id = sessionStorage.getItem("id");
     if (!id) {
@@ -41,8 +41,9 @@ export default function Create() {
     }
   }
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
   if (error) return `An error has occurred: ${error.message}`;
+  if (!sessionStorage.getItem("id")) return "verifing...";
   return (
     <>
       <Head>

@@ -1,6 +1,7 @@
 import { Card } from "@/components/card";
 import { Header } from "@/components/home/header";
 import { Sidebar } from "@/components/home/sidebar";
+import { Loading } from "@/components/loading";
 import useUser from "@/hooks/getUser";
 import cardData from "@/types/card";
 import Head from "next/head";
@@ -8,7 +9,7 @@ import Head from "next/head";
 export default function Home({ cards }: { cards: cardData[] | null }) {
   const { isLoading, error, data } = useUser();
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
   if (error) return `An error has occurred: ${error.message}`;
 
   return (
