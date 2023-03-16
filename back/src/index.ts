@@ -122,5 +122,5 @@ app.get("/user/:id", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`example app listening on port ${port}`);
+  console.log(`example app listening on http://localhost:${port}`);
 });
